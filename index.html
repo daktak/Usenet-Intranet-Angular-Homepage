@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" data-ng-app="usenetApp">
+
+  <head>
+    <title>Patient Management</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+    <script type='text/javascript' src="js/jquery-1.11.1.min.js"></script>
+    <script type='text/javascript' src="js/xml2json.min.js"></script>
+    <script type='text/javascript' src="js/angular.min.js"></script>
+    <script type='text/javascript' src="js/bootstrap.min.js"></script>
+    <script type='text/javascript' src="js/ui-bootstrap-tpls-0.11.0.min.js"></script>
+    <script type='text/javascript' src="script.js"></script>
+  </head>
+
+  <body>
+  <div data-ng-controller="SabDLList"> 
+  <div data-ng-if="usesab">
+  <tabset>
+    <tab heading="Download Queue">
+    <span data-ng-repeat="show in sabdl">
+     {{show.filename}}  
+     <progressbar max="show.mb" value="show.mbprog">
+     {{show.mbprog | number:0}} MB / {{show.mb | number:0}} MB
+     ({{show.percent | number:0}}%) @ {{sabstatus.kbpersec}} KB
+     </progressbar>
+    </span>
+    </tab>
+    <tab heading="Completed">
+    <div data-ng-repeat="slot in sabhistory">
+    {{slot.category}} - {{slot.name}} 
+    </div>
+    </tab>
+  </tabset>
+  </div> 
+  </div>
+  </body>
+
+</html>
+

@@ -29,7 +29,7 @@ controllers.SabDLList = function ($scope, xmlFactory, jsonFactory) {
 		$scope.usesab = results.sabnzbd;
 		$scope.settings = results;
 	xmlFactory.getXMLAsync(results.sabnzbdURL+'api?mode=qstatus&output=xml&apikey='+results.sabnzbdAPI, function(results){
-		$scope.sabdl = results.queue.jobs;
+		$scope.sabdl = results.queue.jobs.job;
 		angular.forEach($scope.sabdl, function(eachjob) {
 			eachjob.mbprog = eachjob.mb - eachjob.mbleft;
 			eachjob.percent = eachjob.mbprog / eachjob.mb * 100;

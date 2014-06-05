@@ -28,8 +28,7 @@ controllers.SabDLList = function ($scope, xmlFactory, jsonFactory) {
 	jsonFactory.getJSONAsync('intranet/settings.json', function(results){
 		$scope.usesab = results.sabnzbd;
 		$scope.settings = results;
-	});
-	xmlFactory.getXMLAsync('intranet/xml.load', function(results){
+	xmlFactory.getXMLAsync(results.sabnzbdURL+'api?mode=qstatus&output=xml&apikey='+results.sabnzbdAPI, function(results){
 		$scope.sabdl = results.queue.jobs;
 		angular.forEach($scope.sabdl, function(eachjob) {
 			eachjob.mbprog = eachjob.mb - eachjob.mbleft;
@@ -37,8 +36,9 @@ controllers.SabDLList = function ($scope, xmlFactory, jsonFactory) {
 		});
 		$scope.sabstatus = results.queue;
 	});
-	xmlFactory.getXMLAsync('intranet/hist.xml', function(results){
+	xmlFactory.getXMLAsync(results.sabnzbdURL+'api?mode=history&start=0&limit=5&output=xml&apikey='+results.sabnzbdAPI, function(results){
 		$scope.sabhistory = results.history.slots.slot;
+	});
 	});
    }
 

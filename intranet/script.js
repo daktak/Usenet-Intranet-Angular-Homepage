@@ -17,17 +17,27 @@ usenetApp.factory('xmlFactory', function($http) {
     }};
 });	
 
-controllers.SabDLList = function ($scope, xmlFactory) {
-	xmlFactory.getXMLAsync('xml.load', function(results){
+usenetApp.factory('jsonFactory', function($http) {
+	return {
+		getJSONAsync: function(url, callback) {
+		$http.get(url).success(callback);
+		}};
+});
+
+controllers.SabDLList = function ($scope, xmlFactory, jsonFactory) {
+	jsonFactory.getJSONAsync('intranet/settings.json', function(results){
+		$scope.usesab = results.sabnzbd;
+		$scope.settings = results;
+	});
+	xmlFactory.getXMLAsync('intranet/xml.load', function(results){
 		$scope.sabdl = results.queue.jobs;
 		angular.forEach($scope.sabdl, function(eachjob) {
 			eachjob.mbprog = eachjob.mb - eachjob.mbleft;
 			eachjob.percent = eachjob.mbprog / eachjob.mb * 100;
 		});
 		$scope.sabstatus = results.queue;
-		$scope.usesab = true;
 	});
-	xmlFactory.getXMLAsync('hist.xml', function(results){
+	xmlFactory.getXMLAsync('intranet/hist.xml', function(results){
 		$scope.sabhistory = results.history.slots.slot;
 	});
    }

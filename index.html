@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" data-ng-app="usenetApp">
+<html xmlns="http://www.w3.org/1999/xhtml" data-ng-app="usenetApp" data-ng-controller="SabDLList"> 
 
   <head>
-    <title>Usenet Intranet Homepage</title>
+    <title>{{settings.wifiName}} Intranet</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap-theme.min.css">
     <script type='text/javascript' src="js/jquery-1.11.1.min.js"></script>
@@ -10,14 +10,21 @@
     <script type='text/javascript' src="js/angular.min.js"></script>
     <script type='text/javascript' src="js/bootstrap.min.js"></script>
     <script type='text/javascript' src="js/ui-bootstrap-tpls-0.11.0.min.js"></script>
-    <script type='text/javascript' src="script.js"></script>
+    <script type='text/javascript' src="intranet/script.js"></script>
   </head>
 
   <body>
-  <div data-ng-controller="SabDLList"> 
+  <h1>
+  {{settings.wifiName}} Server
+  </h1>
   <div data-ng-if="usesab">
+  <a href="http://localhost/sickbeard/home/" title="SickBeard" class="actionButton big sickbeard"><span>SickBeard</span></a>
+  <button><img src="http://localhost/intranet/images/sickbeard.png" /></button>
+  <button><img src="http://localhost/intranet/images/couch.png" /></button>
+  <button><img src="http://localhost/intranet/images/headphones.png" /></button>
+  <button><img src="http://localhost/intranet/images/sab.png" /></button>
   <tabset>
-    <tab heading="Download Queue">
+    <tab heading="Currently Downloading">
     <span data-ng-repeat="show in sabdl">
      {{show.filename}}  
      <progressbar max="show.mb" value="show.mbprog">
@@ -26,14 +33,30 @@
      </progressbar>
     </span>
     </tab>
-    <tab heading="Completed">
+    <tab heading="Recently Finished">
     <div data-ng-repeat="slot in sabhistory">
     {{slot.category}} - {{slot.name}} 
     </div>
     </tab>
   </tabset>
+  <tabset>
+  <tab heading="Bookmarks" data-ng-if="settings.bookmarks">
+  <span data-ng-repeat="link in settings.bookmarks">
+  	<a href={{link.url}}><span data-ng-if="link.icon"><img src={{link.icon}} /></span>{{link.label}}</a>
+  </span>
+  </tab>
+  <tab heading="Android Apps" data-ng-if="settings.android">
+  <span data-ng-repeat="link in settings.android">
+  <a href={{link.url}}><span data-ng-if="link.icon"><img src={{link.icon}} /></span>{{link.label}}</a>
+  </span>
+  </tab>
+  <tab heading="IOS  Apps" data-ng-if="settings.ios">
+  <span data-ng-repeat="link in settings.ios">
+  <a href={{link.url}}><span data-ng-if="link.icon"><img src={{link.icon}} /></span>{{link.label}}</a>
+  </span>
+  </tab>
+  </tabset>
   </div> 
-  </div>
   </body>
 
 </html>

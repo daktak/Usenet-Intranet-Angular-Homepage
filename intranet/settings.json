@@ -3,113 +3,23 @@
     "couchpotato": true,
     "headphones": true,
     "sabnzbd": true,
-    "transmission": true,
-    "sickbeardURL": "localhost/sickbeard/home/",
+    "sickbeardURL": "sickbeard/",
     "sickbeardAPI": "api",
-    "sabnzbdURL": "localhost/sabnzbd/",
+    "sabnzbdURL": "sabnzbd/",
     "sabnzbdAPI": "api",
-    "couchpotatoURL": "localhost/couchpotato",
-    "headphonesURL": "localhost/headphones/home",
-    "transmissionURL": "localhost/transmission",
+    "couchpotatoURL": "couchpotato/",
+    "headphonesURL": "headphones/",
     "sickMissed": true,
     "sickPopups": true,
     "showTrailers": true,
     "showWifi": false,
-    "wifiName": "My",
-    "wifiPassword": "password",
-    "android": [
-        {
-            "label": "Owncloud",
-            "url": "https://play.google.com/store/apps/details?id=com.owncloud.android",
-            "icon": "intranet/images/owncloud.png"
-        },
-        {
-            "label": "Quasseldroid",
-            "url": "https://play.google.com/store/apps/details?id=com.iskrembilen.quasseldroid",
-            "icon": ""
-        },
-        {
-            "label": "XBMC Remote",
-            "url": "https://play.google.com/store/apps/details?id=org.xbmc.android.remote",
-            "icon": ""
-        },
-        {
-            "label": "NzbTools",
-            "url": "https://play.google.com/store/apps/details?id=com.jqe.nzbtools",
-            "icon": ""
-        },
-        {
-            "label": "MPDroid",
-            "url": "https://play.google.com/store/apps/details?id=com.namelessdev.mpdroid",
-            "icon": ""
-        },
-        {
-            "label": "Ampache.Net",
-            "url": "https://play.google.com/store/apps/details?id=johnmooreampachenet.johnmooreampachenet",
-            "icon": ""
-        },
-        {
-            "label": "In the poche",
-            "url": "https://play.google.com/store/apps/details?id=fr.gaulupeau.apps.InThePoche",
-            "icon": ""
-        }
-    ],
-    "ios": [
-        {
-            "label": "Owncloud",
-            "url": "https://itunes.apple.com/us/app/owncloud/id543672169?mt=8",
-            "icon": "intranet/images/owncloud.png"
-        },
-        {
-            "label": "iQuassel",
-            "url": "https://itunes.apple.com/us/app/iquassel/id566844252?mt=8",
-            "icon": ""
-        },
-        {
-            "label": "XBMC Remote",
-            "url": "https://itunes.apple.com/us/app/unofficial-official-xbmc-remote/id520480364",
-            "icon": ""
-        },
-        {
-            "label": "SAB Connect",
-            "url": "https://itunes.apple.com/au/app/sab-connect/id504428849?mt=8",
-            "icon": ""
-        },
-        {
-            "label": "MPoD",
-            "url": "https://itunes.apple.com/au/app/mpod/id285063020?mt=8",
-            "icon": ""
-        },
-        {
-            "label": "iAmpache",
-            "url": "https://itunes.apple.com/au/app/iampache/id356715463?mt=8",
-            "icon": ""
-        },
-        {
-            "label": "FStream",
-            "url": "https://itunes.apple.com/au/app/fstream/id289892007?mt=8",
-            "icon": ""
-        },
-        {
-            "label": "Boxcar 2",
-            "url": "https://itunes.apple.com/au/app/boxcar-2/id782987891?mt=8",
-            "icon": ""
-        },
-        {
-            "label": "AmpacheX",
-            "url": "https://itunes.apple.com/au/app/ampachex/id532578754?mt=8",
-            "icon": ""
-        },
-        {
-            "label": "Wallabag",
-            "url": "https://itunes.apple.com/app/wallabag/id828331015?mt=8",
-            "icon": ""
-        }
-    ],
+    "wifiName": "wifi",
+    "wifiPassword": "pass",
+    "bookSort" : "label",
     "bookmarks": [
         {
             "label": "Season Start Dates",
-            "url": "intranet/comingseasons.php",
+            "url": "intranet/comingseasons.html",
             "icon": "intranet/images/tv.png"
         },
         {
@@ -139,7 +49,7 @@
         },
         {
             "label": "Mylar",
-            "url": "http://localhost/mylar/home",
+            "url": "mylar/",
             "icon": "intranet/images/mylarlogo.png"
         },
         {
@@ -159,7 +69,7 @@
         },
         {
             "label": "Dashboard",
-            "url": "http://localhost/linux-dash",
+            "url": "linux-dash",
             "icon": ""
         },
         {
@@ -174,12 +84,7 @@
         },
         {
             "label": "Radio Stream",
-            "url": "http://localhost:8000/tomato-radio.mp3",
-            "icon": ""
-        },
-        {
-            "label": "Mobile Links",
-            "url": "intranet/mobile.php",
+            "url": "http://localhost:8000/radio.mp3",
             "icon": ""
         },
         {

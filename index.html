@@ -1,63 +1,92 @@
-<!DOCTYPE html>
+
+<!doctype html>
 <html xmlns="http://www.w3.org/1999/xhtml" data-ng-app="usenetApp" data-ng-controller="SabDLList"> 
 
-  <head>
-    <title>{{settings.wifiName}} Intranet</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
-    <script type='text/javascript' src="js/jquery-1.11.1.min.js"></script>
-    <script type='text/javascript' src="js/xml2json.min.js"></script>
-    <script type='text/javascript' src="js/angular.min.js"></script>
-    <script type='text/javascript' src="js/bootstrap.min.js"></script>
-    <script type='text/javascript' src="js/ui-bootstrap-tpls-0.11.0.min.js"></script>
-    <script type='text/javascript' src="intranet/script.js"></script>
-  </head>
+		<meta charset="UTF-8" />
+		<title>tomato Intranet</title>
+		<link rel="stylesheet" href="intranet/style.css" />
+		<link rel="shortcut icon" href="favicon.ico" />
+		<script type='text/javascript' src="intranet/js/xml2json.min.js"></script>
+		<script type='text/javascript' src="intranet/js/angular.min.js"></script>
+		<script type='text/javascript' src="intranet/app.js"></script>
+	</head>
+	<body>
+		<h1>tomato Server</h1>
+		<div data-ng-if="settings.sickbeard">
+			<div class="sickbeardShows">
+			<h3>TV Today</h3>
+			<ul class='comingShows'>
+				<li data-ng-repeat="show in sbtoday">
+					<span data-ng-if="settings.sickPopups">
+					<span class='showPopup'><img src='{{settings.sickbeardURL}}/showPoster/?show={{show.indexerid}}&amp;which=poster' class='showposter' alt='{{show.indexerid}}' /></span>
+					</span>
+					<strong class='showname'>{{show.show_name}}</strong><br />
+					<span class='showep'>{{show.season}}x{{show.episode}} - {{show.ep_name}}</span>
+				</li>
+			</ul>
+			<ul class='snatchedShows'>
+				<li class="{{show.quality}}" data-ng-repeat="show in sbgot">
+					<span data-ng-if="settings.sickPopups">
+					<span class='showPopup'><img src='{{settings.sickbeardURL}}/showPoster/?show={{show.indexerid}}&amp;which=poster' class='showposter' alt='{{show.indexerid}}' /></span>
+					</span>
+					<strong class='showname'>{{show.show_name}} <small>{{show.season}}x{{show.episode}}</small></strong></li>
+				</li>
+			</ul>
+			</div>
+		
+			<a href="{{settings.sickbeardURL}}" title="SickBeard" class="actionButton big sickbeard"><span>SickBeard</span></a>
+		</div>
+		<span data-ng-if="settings.couchpotato">
+			<a href="{{settings.couchpotatoURL}}" title="CouchPoato" class="actionButton big couchpotato"><span>CouchPotato</span></a>
+		</span>
+		<span data-ng-if="settings.headphones">
+			<a href="{{settings.headphonesURL}}" title="Headphones" class="actionButton big headphones"><span>Headphones</span></a>
+		</span>
+		<span data-ng-if="settings.sabnzbd">		
+			<a href="{{settings.sabnzbdURL}}" title="SABnzbd" class="actionButton big sabnzb"><span>SABnzbd</span></a>
+		</span>
+		<div class="downloadFrame clearfix">
+			<div class="downloadFrameSlide clearfix">
+			<div class="downloadPage downloadPageCurrent">
+				<h2>Currently Downloading</h2>
+				<a href="#" class="go actionButton small">&gt;</a>
+				<span data-ng-repeat="show in sabdl">
+				<span class ='currendtl'><span data-ng-if="show.paused">PAUSED: </span>{{show.filename}}</span>
+				<progress value="{{show.percent}}" max='100'></progress>
+				<span class='stats'>{{show.mbprog | number:0}}mb / {{show.mb | number:0}}mb ({{show.percent}}%) @ {{sabstatus.kbpersec | number:2}} </span>
+				</span>
+			</div>
+			<div class="downloadPage downloadPageHistory">
+				<h2>Recently Finished</h2>
+				<a href="#" class="go actionButton small">&lt;</a>
+				<ul><li data-ng-repeat="slot in sabhistory">{{slot.category}} - {{slot.name}}</li></ul>
+			</div>
+			</div>
 
-  <body>
-  <h1>
-  {{settings.wifiName}} Server
-  </h1>
-  <div data-ng-if="usesab">
-  <a href="http://localhost/sickbeard/home/" title="SickBeard" class="actionButton big sickbeard"><span>SickBeard</span></a>
-  <button><img src="http://localhost/intranet/images/sickbeard.png" /></button>
-  <button><img src="http://localhost/intranet/images/couch.png" /></button>
-  <button><img src="http://localhost/intranet/images/headphones.png" /></button>
-  <button><img src="http://localhost/intranet/images/sab.png" /></button>
-  <tabset>
-    <tab heading="Currently Downloading">
-    <span data-ng-repeat="show in sabdl">
-     {{show.filename}}  
-     <progressbar max="show.mb" value="show.mbprog">
-     {{show.mbprog | number:0}} MB / {{show.mb | number:0}} MB
-     ({{show.percent | number:0}}%) @ {{sabstatus.kbpersec}} KB
-     </progressbar>
-    </span>
-    </tab>
-    <tab heading="Recently Finished">
-    <div data-ng-repeat="slot in sabhistory">
-    {{slot.category}} - {{slot.name}} 
-    </div>
-    </tab>
-  </tabset>
-  <tabset>
-  <tab heading="Bookmarks" data-ng-if="settings.bookmarks">
-  <span data-ng-repeat="link in settings.bookmarks">
-  	<a href={{link.url}}><span data-ng-if="link.icon"><img src={{link.icon}} /></span>{{link.label}}</a>
-  </span>
-  </tab>
-  <tab heading="Android Apps" data-ng-if="settings.android">
-  <span data-ng-repeat="link in settings.android">
-  <a href={{link.url}}><span data-ng-if="link.icon"><img src={{link.icon}} /></span>{{link.label}}</a>
-  </span>
-  </tab>
-  <tab heading="IOS  Apps" data-ng-if="settings.ios">
-  <span data-ng-repeat="link in settings.ios">
-  <a href={{link.url}}><span data-ng-if="link.icon"><img src={{link.icon}} /></span>{{link.label}}</a>
-  </span>
-  </tab>
-  </tabset>
-  </div> 
-  </body>
+							
+		</div>
+		
+		</div>
 
+		<div class="wifi" data-ng-if="settings.showWifi">
+			<h2>Wifi Password for {{settings.wifiName}}</h2>
+			<h3>{{settings.wifiPassword}}</h3>
+		</div>
+				
+		<div class="secondaryButtons clearfix">
+			<span data-ng-if="settings.showTrailers">
+			<a href="http://www.hd-trailers.net/" target="_blank" class="actionButton small icon iconTrailer"><span>Watch Trailers</span></a>
+			</span>
+			<span data-ng-if="settings.bookmarks">
+			<span data-ng-repeat="link in settings.bookmarks | orderBy:settings.bookSort">
+			<a href="{{link.url}}" target="_blank" class="actionButton small icon iconTrailer"><span style='background-image: url({{link.icon}});'>{{link.label}}</span></a>
+			</span>
+			</span>
+		</div>
+
+				
+		<script src="intranet/js/jquery.js"></script>
+		<script src="intranet/js/scripts.js"></script>
+	</body>
 </html>
 

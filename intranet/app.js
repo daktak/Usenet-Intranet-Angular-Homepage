@@ -93,12 +93,9 @@ controllers.SabDLList = function ($scope, Session, xmlFactory, jsonFactory, $loc
 		}
 		//if transmission
 		if ($scope.settings.transmission) {	
-		$scope.session = undefined; 
-		$scope.torrents = [];
+		//$scope.session = undefined; 
+		//$scope.torrents = [];
 		$scope.ipAddress = $scope.settings.transmissionURL;
-		$scope.listSettings = function() {
-		      return settingsBuilder($scope.$storage);
-		};
   $scope.$storage = $localStorage.$default({
         downloadDir: true,
         rateUpload: true,
@@ -108,13 +105,21 @@ controllers.SabDLList = function ($scope, Session, xmlFactory, jsonFactory, $loc
         remove: true,
         uploadedEver: true,
   });
-Session.listTorrents($scope.session, $scope.ipAddress, $scope.listSettings()).then(function(data) {
+  $scope.$storage.ipAddress = $scope.ipAddress;
+  $scope.listSettings = function() {
+  	return settingsBuilder($scope.$storage);
+  };
+  listTorrents = function() {
+Session.listTorrents($scope.session, $scope.$storage.ipAddress, $scope.listSettings()).then(function(data) {
       if (angular.isString(data)) {
         $scope.session = data;
+	listTorrents();
       } else {
         $scope.torrents = data['arguments']['torrents'];
       }
       });
+};
+listTorrents();
      } 
 		//get sab downrload queue
 		if ($scope.settings.sabnzbd) {

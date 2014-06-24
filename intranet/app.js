@@ -1,6 +1,27 @@
-var usenetApp = angular.module('usenetApp', []);
+var usenetApp = angular.module('usenetApp', ['usenetApp.sessions', 'base64','ngStorage']);	
 
 var controllers = {};
+
+usenetApp.config(function($httpProvider) {
+    //Enable cross domain calls
+    $httpProvider.defaults.useXDomain = true;
+    delete $httpProvider.defaults.headers.common['X-Requested-With'];
+});
+
+
+var settingsBuilder = function(p) {
+    var presets = [ 'id', 'name', 'rateDownload', 'percentDone'];
+    for (var key in p) {
+      if (p.hasOwnProperty(key)) {
+        if (p[key]) {
+          if (typeof p[key] === 'boolean') {
+             presets.push(key);
+          }
+        }
+      }
+    }
+    return presets;
+};
 
 usenetApp.factory('xmlFactory', function($http) {
 	return {
@@ -49,7 +70,7 @@ controllers.SabComing =  function ($scope, jsonFactory) {
 });
 }
 
-controllers.SabDLList = function ($scope, xmlFactory, jsonFactory) {
+controllers.SabDLList = function ($scope, Session, xmlFactory, jsonFactory, $localStorage) {
 	var today = new Date();
 	var dd = today.getDate();
 	var mm = today.getMonth()+1; //January is 0!
@@ -70,6 +91,31 @@ controllers.SabDLList = function ($scope, xmlFactory, jsonFactory) {
 		else {
 			$scope.sicktype = 'today';
 		}
+		//if transmission
+		if ($scope.settings.transmission) {	
+		$scope.session = undefined; 
+		$scope.torrents = [];
+		$scope.ipAddress = $scope.settings.transmissionURL;
+		$scope.listSettings = function() {
+		      return settingsBuilder($scope.$storage);
+		};
+  $scope.$storage = $localStorage.$default({
+        downloadDir: true,
+        rateUpload: true,
+        eta: false,
+        totalSize: true,
+        status: true,
+        remove: true,
+        uploadedEver: true,
+  });
+Session.listTorrents($scope.session, $scope.ipAddress, $scope.listSettings()).then(function(data) {
+      if (angular.isString(data)) {
+        $scope.session = data;
+      } else {
+        $scope.torrents = data['arguments']['torrents'];
+      }
+      });
+     } 
 		//get sab downrload queue
 		if ($scope.settings.sabnzbd) {
 		xmlFactory.getXMLAsync(results.sabnzbdURL+'api?mode=qstatus&output=xml&apikey='+results.sabnzbdAPI, function(results){

@@ -6,9 +6,6 @@
 		<title>tomato Intranet</title>
 		<link rel="stylesheet" href="intranet/style.css" />
 		<link rel="shortcut icon" href="favicon.ico" />
-		<script type='text/javascript' src="intranet/js/xml2json.min.js"></script>
-		<script type='text/javascript' src="intranet/js/angular.min.js"></script>
-		<script type='text/javascript' src="intranet/app.js"></script>
 	</head>
 	<body>
 		<h1>tomato Server</h1>
@@ -67,6 +64,26 @@
 		</div>
 		
 		</div>
+<div data-ng-if="settings.transmission">
+	<section class="clearfix">
+		<a href="{{settings.transmissionLink}}" title="Transmission" class="actionButton big transmission"><span>Transmission</span></a>
+		<div class="downloadFrame clearfix">
+		<div class="downloadFrameSlide clearfix">
+		<div class="downloadPage downloadPageCurrent">
+			<a href="#" class="go actionButton small">&gt;</a>
+			<h2>Currently Downloading</h2>
+			<div class='torrent' data-ng-repeat="torrent in torrents">{{torrent.name}}<progress value="{{torrent.percentDone}}" max="1"></progress>
+			<span class='stats'>{{torrent.totalSize/1024000*torrent.percentDone | number:2}} MB / {{torrent.totalSize/1024000 | number:2}} MB ({{torrent.percentDone*100 | number:0}}%) @ {{torrent.rateDownload}} KB</span>
+			</div>
+			</div>
+			<div class="downloadPage downloadPageHistory">
+			<h2>Recently Finished</h2>
+			<a href="#" class="go actionButton small">&lt;</a><ul></ul>
+			</div>
+		</div>
+		</div>
+	</section>
+</div>
 
 		<div class="wifi" data-ng-if="settings.showWifi">
 			<h2>Wifi Password for {{settings.wifiName}}</h2>
@@ -83,10 +100,16 @@
 			</span>
 			</span>
 		</div>
-
-				
+	
 		<script src="intranet/js/jquery.js"></script>
 		<script src="intranet/js/scripts.js"></script>
+                <script type='text/javascript' src="intranet/js/xml2json.min.js"></script>
+                <script type='text/javascript' src="intranet/js/angular.min.js"></script>
+		<script type='text/javascript' src="intranet/js/ngStorage.min.js"></script>
+		<script type='text/javascript' src="intranet/js/angular-base64.js"></script>
+		<script type='text/javascript' src="intranet/js/session.js"></script>
+                <script type='text/javascript' src="intranet/app.js"></script>
+
 	</body>
 </html>
 

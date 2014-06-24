@@ -1,0 +1,9 @@
+<li data-ng-repeat="show in sbtoday">
+	<span data-ng-if="settings.sickPopups">
+        	<span class="showPopup">
+			<img src="{{settings.sickbeardURL}}/showPoster/?show={{show.indexerid}}&amp;which=poster" class="showposter" alt="{{show.indexerid}}" />
+		</span>
+        </span>
+	<strong class="showname">{{show.show_name}}</strong><br />
+        <span class="showep">{{show.season}}x{{show.episode}} - {{show.ep_name}}</span>
+</li>

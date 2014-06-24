@@ -1,0 +1,6 @@
+<li class="{{show.quality}}" data-ng-repeat="show in sbgot">
+	<span class="showPopup">
+		<img src="{{settings.sickbeardURL}}/showPoster/?show={{show.indexerid}}&amp;which=poster" class="showposter" alt="{{show.indexerid}}" />
+	</span>
+	<strong class="showname">{{show.show_name}} <small>{{show.season}}x{{show.episode}}</small></strong>
+</li>

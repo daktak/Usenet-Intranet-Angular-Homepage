@@ -192,17 +192,13 @@ directives.transTorrent = function() {
 
 directives.sbDL = function() {
 	return {
-		template: '<li data-ng-repeat="show in sbtoday"><span data-ng-if="settings.sickPopups">' +
-                                        '<span class="showPopup"><img src="{{settings.sickbeardURL}}/showPoster/?show={{show.indexerid}}&amp;which=poster" class="showposter" alt="{{show.indexerid}}" /></span>'+
-                                        '</span><strong class="showname">{{show.show_name}}</strong><br />'+
-                                        '<span class="showep">{{show.season}}x{{show.episode}} - {{show.ep_name}}</span></li>'
+		templateUrl: 'intranet/template/sbdl.tpl.html'
 	};
 }
 
 directives.sbHistory = function() {
         return {
-	                template: '<li class="{{show.quality}}" data-ng-repeat="show in sbgot"><span class="showPopup"><img src="{{settings.sickbeardURL}}/showPoster/?show={{show.indexerid}}&amp;which=poster" class="showposter" alt="{{show.indexerid}}" /></span></span>'+
-                                  '<strong class="showname">{{show.show_name}} <small>{{show.season}}x{{show.episode}}</small></strong></li></li>'
+		templateUrl: 'intranet/template/sbhistory.tpl.html'
 
 	};
 }
@@ -215,7 +211,7 @@ directives.sabnzbd  = function() {
 
 directives.sabHistory  = function() {
         return {
-                 template: '<ul><li data-ng-repeat="slot in sabhistory">{{slot.category}} - {{slot.name}}</li></ul>'
+		templateUrl: 'intranet/template/sabhistory.tpl.html'
         };
 }
 

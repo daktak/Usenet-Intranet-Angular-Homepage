@@ -1,0 +1,5 @@
+<span data-ng-repeat="show in sabdl">
+<span class ="currendtl"><span data-ng-if="show.paused">PAUSED: </span>{{show.filename}}</span>
+<progress value="{{show.percent}}" max="100"></progress>
+<span class="stats">{{show.mbprog | number:0}}mb / {{show.mb | number:0}}mb ({{show.percent}}%) @ {{sabstatus.kbpersec | number:2}} </span></span>
+

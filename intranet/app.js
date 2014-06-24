@@ -93,11 +93,12 @@ controllers.SabDLList = function ($scope, Session, xmlFactory, jsonFactory, $loc
 		else {
 			$scope.sicktype = 'today';
 		}
-		$scope.settings.sabnzbdURL.replace('localhost',$location.host());
-		$scope.settings.transmissionURL.replace('localhost',$location.host());
-		$scope.settings.transmissionLink.replace('localhost',$location.host());
-		$scope.settings.sickbeardURL.replace('localhost',$location.host());
-		$scope.settings.headphonesURL.replace('localhost',$location.host());
+		console.debug($location.host());
+		$scope.settings.sabnzbdURL = $scope.settings.sabnzbdURL.replace('localhost',$location.host());
+		$scope.settings.transmissionURL = $scope.settings.transmissionURL.replace('localhost',$location.host());
+		$scope.settings.transmissionLink = $scope.settings.transmissionLink.replace('localhost',$location.host());
+		$scope.settings.sickbeardURL = $scope.settings.sickbeardURL.replace('localhost',$location.host());
+		$scope.settings.headphonesURL = $scope.settings.headphonesURL.replace('localhost',$location.host());
 		//if transmission
 		if ($scope.settings.transmission) {	
 		//$scope.session = undefined; 
@@ -208,10 +209,7 @@ directives.sbHistory = function() {
 
 directives.sabnzbd  = function() {
 	return {
-		 template: '<span data-ng-repeat="show in sabdl">'+
-		 '<span class ="currendtl"><span data-ng-if="show.paused">PAUSED: </span>{{show.filename}}</span>'+
-                                '<progress value="{{show.percent}}" max="100"></progress>'+
-                                '<span class="stats">{{show.mbprog | number:0}}mb / {{show.mb | number:0}}mb ({{show.percent}}%) @ {{sabstatus.kbpersec | number:2}} </span></span>'
+		templateUrl: 'intranet/template/sabnzbd.tpl.html'
 	};
 }
 

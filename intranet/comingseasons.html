@@ -4,20 +4,23 @@
 		<title>Season Start Dates</title>
 		<link rel="stylesheet" href="style.css" />
 		<link rel="shortcut icon" href="images/wifi.png" />
-		<script type='text/javascript' src="js/xml2json.min.js"></script>
-		<script type='text/javascript' src="js/angular.min.js"></script>
-		<script type='text/javascript' src="app.js"></script>
 	</head>
 	<body>
 	<h1>Season Start Dates</h1>
 	<div class="seasonStarts">
 	<ul>
 		<li data-ng-repeat="show in coming">
-		<img src='{{settings.sickbeardURL}}/showPoster/?show={{show.indexerid}}&which=banner' class='showbanner' />
+		<img src="{{settings.sickbeardURL}}showPoster/?show={{show.tvdbid}}&which=banner" class="showbanner" />
 		<strong>{{show.show_name}}</strong><br />
 		Season {{show.season}}<br /><br />Starts {{show.weekday}}, {{show.nicedate}}</li>
 	</div>
 	<script src="js/jquery.js"></script>
 	<script src="js/scripts.js"></script>
+                <script type='text/javascript' src="js/angular.min.js"></script>
+		<script type='text/javascript' src="js/ngStorage.min.js"></script>
+		<script type='text/javascript' src="js/angular-base64.js"></script>
+		<script type='text/javascript' src="js/session.js"></script>
+                <script type='text/javascript' src="app.js"></script>
+
 	</body>
 </html>

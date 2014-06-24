@@ -46,11 +46,11 @@ usenetApp.factory('jsonFactory', function($http) {
 		}};
 });
 
-controllers.SabComing =  function ($scope, jsonFactory) {
+controllers.SabComing =  function ($scope, jsonFactory, $location) {
         //get settings first
         jsonFactory.getJSONAsync('settings.json', function(results){
                 $scope.settings = results;
-		$scope.settings.sickbeardURL.replace('localhost',$location.host());
+		$scope.settings.sickbeardURL = $scope.settings.sickbeardURL.replace('localhost',$location.host());
 		if ($scope.settings.sickbeard) {
                 jsonFactory.getJSONAsync($scope.settings.sickbeardURL+'api/'+$scope.settings.sickbeardAPI+'/?cmd=future&sort=date&type=later', function(results){
                         var later = [];

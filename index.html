@@ -13,21 +13,10 @@
 			<div class="sickbeardShows">
 			<h3>TV Today</h3>
 			<ul class='comingShows'>
-				<li data-ng-repeat="show in sbtoday">
-					<span data-ng-if="settings.sickPopups">
-					<span class='showPopup'><img src='{{settings.sickbeardURL}}/showPoster/?show={{show.indexerid}}&amp;which=poster' class='showposter' alt='{{show.indexerid}}' /></span>
-					</span>
-					<strong class='showname'>{{show.show_name}}</strong><br />
-					<span class='showep'>{{show.season}}x{{show.episode}} - {{show.ep_name}}</span>
-				</li>
+				<div sb-dl></div>
 			</ul>
 			<ul class='snatchedShows'>
-				<li class="{{show.quality}}" data-ng-repeat="show in sbgot">
-					<span data-ng-if="settings.sickPopups">
-					<span class='showPopup'><img src='{{settings.sickbeardURL}}/showPoster/?show={{show.indexerid}}&amp;which=poster' class='showposter' alt='{{show.indexerid}}' /></span>
-					</span>
-					<strong class='showname'>{{show.show_name}} <small>{{show.season}}x{{show.episode}}</small></strong></li>
-				</li>
+				<div sb-history></div>
 			</ul>
 			</div>
 		
@@ -47,16 +36,12 @@
 			<div class="downloadPage downloadPageCurrent">
 				<h2>Currently Downloading</h2>
 				<a href="#" class="go actionButton small">&gt;</a>
-				<span data-ng-repeat="show in sabdl">
-				<span class ='currendtl'><span data-ng-if="show.paused">PAUSED: </span>{{show.filename}}</span>
-				<progress value="{{show.percent}}" max='100'></progress>
-				<span class='stats'>{{show.mbprog | number:0}}mb / {{show.mb | number:0}}mb ({{show.percent}}%) @ {{sabstatus.kbpersec | number:2}} </span>
-				</span>
+				<div sabnzbd></div>
 			</div>
 			<div class="downloadPage downloadPageHistory">
 				<h2>Recently Finished</h2>
 				<a href="#" class="go actionButton small">&lt;</a>
-				<ul><li data-ng-repeat="slot in sabhistory">{{slot.category}} - {{slot.name}}</li></ul>
+				<div sab-history></div>
 			</div>
 			</div>
 
@@ -72,9 +57,7 @@
 		<div class="downloadPage downloadPageCurrent">
 			<a href="#" class="go actionButton small">&gt;</a>
 			<h2>Currently Downloading</h2>
-			<div class='torrent' data-ng-repeat="torrent in torrents">{{torrent.name}}<progress value="{{torrent.percentDone}}" max="1"></progress>
-			<span class='stats'>{{torrent.totalSize/1024000*torrent.percentDone | number:2}} MB / {{torrent.totalSize/1024000 | number:2}} MB ({{torrent.percentDone*100 | number:0}}%) @ {{torrent.rateDownload}} KB</span>
-			</div>
+			<div trans-torrent></div>
 			</div>
 			<div class="downloadPage downloadPageHistory">
 			<h2>Recently Finished</h2>

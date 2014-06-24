@@ -1,6 +1,7 @@
 var usenetApp = angular.module('usenetApp', ['usenetApp.sessions', 'base64','ngStorage']);	
 
 var controllers = {};
+var directives = {};
 
 usenetApp.config(function($httpProvider) {
     //Enable cross domain calls
@@ -179,5 +180,48 @@ listTorrents();
 	});
    }
 
+directives.transTorrent = function() {
+	return {
+		template: '<div class="torrent" data-ng-repeat="torrent in torrents">{{torrent.name}}<progress value="{{torrent.percentDone}}" max="1"></progress>' +
+		'<span class="stats">{{torrent.totalSize/1024000*torrent.percentDone | number:2}} MB / {{torrent.totalSize/1024000 | number:2}} MB ' +
+		'({{torrent.percentDone*100 | number:0}}%) @ {{torrent.rateDownload}} KB</span></div>'
+
+	};
+}
+
+directives.sbDL = function() {
+	return {
+		template: '<li data-ng-repeat="show in sbtoday"><span data-ng-if="settings.sickPopups">' +
+                                        '<span class="showPopup"><img src="{{settings.sickbeardURL}}/showPoster/?show={{show.indexerid}}&amp;which=poster" class="showposter" alt="{{show.indexerid}}" /></span>'+
+                                        '</span><strong class="showname">{{show.show_name}}</strong><br />'+
+                                        '<span class="showep">{{show.season}}x{{show.episode}} - {{show.ep_name}}</span></li>'
+	};
+}
+
+directives.sbHistory = function() {
+        return {
+	                template: '<li class="{{show.quality}}" data-ng-repeat="show in sbgot"><span class="showPopup"><img src="{{settings.sickbeardURL}}/showPoster/?show={{show.indexerid}}&amp;which=poster" class="showposter" alt="{{show.indexerid}}" /></span></span>'+
+                                  '<strong class="showname">{{show.show_name}} <small>{{show.season}}x{{show.episode}}</small></strong></li></li>'
+
+	};
+}
+
+directives.sabnzbd  = function() {
+	return {
+		 template: '<span data-ng-repeat="show in sabdl">'+
+		 '<span class ="currendtl"><span data-ng-if="show.paused">PAUSED: </span>{{show.filename}}</span>'+
+                                '<progress value="{{show.percent}}" max="100"></progress>'+
+                                '<span class="stats">{{show.mbprog | number:0}}mb / {{show.mb | number:0}}mb ({{show.percent}}%) @ {{sabstatus.kbpersec | number:2}} </span></span>'
+	};
+}
+
+directives.sabHistory  = function() {
+        return {
+                 template: '<ul><li data-ng-repeat="slot in sabhistory">{{slot.category}} - {{slot.name}}</li></ul>'
+        };
+}
+
+
+usenetApp.directive(directives);
 usenetApp.controller(controllers);
 

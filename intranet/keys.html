@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html data-ng-app="usenetApp" data-ng-controller="mobile">
+	<head>
+		<title>Season Start Dates</title>
+		<link rel="stylesheet" href="style.css" />
+		<link rel="shortcut icon" href="images/wifi.png" />
+	</head>
+	<body>
+	<dl>
+		<span data-ng-if="settings.sabnzbd">
+		<dt>Sabnzbd: </dt>
+		<dd>{{settings.sabnzbdAPI}}</dd>
+		</span>
+		<span data-ng-if="settings.sickbeard">
+		<dt>Sickbeard: </dt>
+		<dd>{{settings.sickbeardAPI}}</dd>
+		</span>
+		<span data-ng-repeat="key in settings.keys">
+		<dt>{{key.label}}: </dt>
+		<dd>{{key.api}}</dd>
+		</span>
+	</dl>
+	<script src="js/jquery.js"></script>
+	<script src="js/scripts.js"></script>
+                <script type='text/javascript' src="js/angular.min.js"></script>
+		<script type='text/javascript' src="js/ngStorage.min.js"></script>
+		<script type='text/javascript' src="js/angular-base64.js"></script>
+		<script type='text/javascript' src="js/session.js"></script>
+                <script type='text/javascript' src="app.js"></script>
+
+	</body>
+</html>

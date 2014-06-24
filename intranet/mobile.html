@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html data-ng-app="usenetApp" data-ng-controller="mobile">
+	<head>
+		<title>Season Start Dates</title>
+		<link rel="stylesheet" href="style.css" />
+		<link rel="shortcut icon" href="images/wifi.png" />
+	</head>
+	<body>
+	<span data-ng-if="settings.android">
+		<h1>Android</h1>
+		<div class="secondaryButtons clearfix">
+
+		<span data-ng-repeat="link in settings.android | orderBy:settings.androidSort">
+		<a href="{{link.url}}" target="_blank" class="actionButton small icon iconTrailer">
+		<span style='background-image: url({{link.icon}});'>{{link.label}}</span></a>
+		</span>
+		</div>
+	</span>
+	<span data-ng-if="settings.ios">
+		<h1>IOS</h1>
+		<div class="secondaryButtons clearfix">
+		<span data-ng-repeat="link in settings.android | orderBy:settings.iosSort">
+		<a href="{{link.url}}" target="_blank" class="actionButton small icon iconTrailer">
+		<span style='background-image: url({{link.icon}});'>{{link.label}}</span></a>
+		</span>
+		</div>
+	</span>
+	<script src="js/jquery.js"></script>
+	<script src="js/scripts.js"></script>
+                <script type='text/javascript' src="js/angular.min.js"></script>
+		<script type='text/javascript' src="js/ngStorage.min.js"></script>
+		<script type='text/javascript' src="js/angular-base64.js"></script>
+		<script type='text/javascript' src="js/session.js"></script>
+                <script type='text/javascript' src="app.js"></script>
+
+	</body>
+</html>

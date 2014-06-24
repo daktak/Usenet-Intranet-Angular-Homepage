@@ -9,6 +9,10 @@ usenetApp.config(function($httpProvider) {
     delete $httpProvider.defaults.headers.common['X-Requested-With'];
 });
 
+var swaplocalhost = function(url, $location) {
+    var returnurl = url.replace('localhost',$location.host());
+    return returnurl;
+};
 
 var settingsBuilder = function(p) {
     var presets = [ 'id', 'name', 'rateDownload', 'percentDone'];
@@ -46,11 +50,23 @@ usenetApp.factory('jsonFactory', function($http) {
 		}};
 });
 
+controllers.mobile = function ($scope, jsonFactory, $location) {
+	jsonFactory.getJSONAsync('settings.json', function(results){
+		$scope.settings = results;
+		angular.forEach($scope.settings.android, function(eachdroid) {
+			eachdroid.url = swaplocalhost(eachdroid.url, $location);
+		});
+		angular.forEach($scope.settings.ios, function(eachios) {
+			eachios.url = swaplocalhost(eachios.url, $location);
+		});
+		});
+}
+
 controllers.SabComing =  function ($scope, jsonFactory, $location) {
         //get settings first
         jsonFactory.getJSONAsync('settings.json', function(results){
                 $scope.settings = results;
-		$scope.settings.sickbeardURL = $scope.settings.sickbeardURL.replace('localhost',$location.host());
+		$scope.settings.sickbeardURL = swaplocalhost($scope.settings.sickbeardURL, $location);
 		if ($scope.settings.sickbeard) {
                 jsonFactory.getJSONAsync($scope.settings.sickbeardURL+'api/'+$scope.settings.sickbeardAPI+'/?cmd=future&sort=date&type=later', function(results){
                         var later = [];
@@ -93,12 +109,11 @@ controllers.SabDLList = function ($scope, Session, xmlFactory, jsonFactory, $loc
 		else {
 			$scope.sicktype = 'today';
 		}
-		console.debug($location.host());
-		$scope.settings.sabnzbdURL = $scope.settings.sabnzbdURL.replace('localhost',$location.host());
-		$scope.settings.transmissionURL = $scope.settings.transmissionURL.replace('localhost',$location.host());
-		$scope.settings.transmissionLink = $scope.settings.transmissionLink.replace('localhost',$location.host());
-		$scope.settings.sickbeardURL = $scope.settings.sickbeardURL.replace('localhost',$location.host());
-		$scope.settings.headphonesURL = $scope.settings.headphonesURL.replace('localhost',$location.host());
+		$scope.settings.sabnzbdURL = swaplocalhost($scope.settings.sabnzbdURL ,$location);
+		$scope.settings.transmissionURL = swaplocalhost($scope.settings.transmissionURL,$location);
+		$scope.settings.transmissionLink = swaplocalhost($scope.settings.transmissionLink,$location);
+		$scope.settings.sickbeardURL = swaplocalhost($scope.settings.sickbeardURL,$location);
+		$scope.settings.headphonesURL = swaplocalhost($scope.settings.headphonesURL,$location);
 		//if transmission
 		if ($scope.settings.transmission) {	
 		//$scope.session = undefined; 
@@ -138,6 +153,9 @@ listTorrents();
 			eachjob.percent =Math.round( eachjob.mbprog / eachjob.mb * 100);
 		});
 		$scope.sabstatus = results.queue;
+		});
+		angular.forEach($scope.settings.bookmarks, function(eachlink) {
+			eachlink.url = swaplocalhost(eachlink.url, $location);
 		});
 		//get sab history
 		xmlFactory.getXMLAsync(results.sabnzbdURL+'api?mode=history&start=0&limit=5&output=xml&apikey='+results.sabnzbdAPI, function(results){

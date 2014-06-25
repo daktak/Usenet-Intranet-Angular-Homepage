@@ -147,7 +147,7 @@ listTorrents();
 		//get sab downrload queue
 		if ($scope.settings.sabnzbd) {
 		xmlFactory.getXMLAsync(results.sabnzbdURL+'api?mode=qstatus&output=xml&apikey='+results.sabnzbdAPI, function(results){
-		$scope.sabdl = results.queue.jobs;
+		$scope.sabdl = results.queue.jobs.job;
 		angular.forEach($scope.sabdl, function(eachjob) {
 			eachjob.mbprog = eachjob.mb - eachjob.mbleft;
 			eachjob.percent =Math.round( eachjob.mbprog / eachjob.mb * 100);

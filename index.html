@@ -3,12 +3,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" data-ng-app="usenetApp" data-ng-controller="SabDLList"> 
 
 		<meta charset="UTF-8" />
-		<title>tomato Intranet</title>
+		<title>{{settings.wifiName}} Intranet</title>
 		<link rel="stylesheet" href="intranet/style.css" />
 		<link rel="shortcut icon" href="favicon.ico" />
 	</head>
 	<body>
-		<h1>tomato Server</h1>
+		<h1>{{settings.wifiName}} Server</h1>
 		<div data-ng-if="settings.sickbeard">
 			<div class="sickbeardShows">
 			<h3>TV Today</h3>

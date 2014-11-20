@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html data-ng-app="usenetApp" data-ng-controller="mobile">
 	<head>
-		<title>Season Start Dates</title>
+		<title>Mobile Links</title>
 		<link rel="stylesheet" href="style.css" />
 		<link rel="shortcut icon" href="images/wifi.png" />
 	</head>
@@ -19,7 +19,7 @@
 	<span data-ng-if="settings.ios">
 		<h1>IOS</h1>
 		<div class="secondaryButtons clearfix">
-		<span data-ng-repeat="link in settings.android | orderBy:settings.iosSort">
+		<span data-ng-repeat="link in settings.ios | orderBy:settings.iosSort">
 		<a href="{{link.url}}" target="_blank" class="actionButton small icon iconTrailer">
 		<span style='background-image: url({{link.icon}});'>{{link.label}}</span></a>
 		</span>

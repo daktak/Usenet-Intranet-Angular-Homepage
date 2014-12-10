@@ -3,11 +3,11 @@ var usenetApp = angular.module('usenetApp', ['usenetApp.sessions', 'base64','ngS
 var controllers = {};
 var directives = {};
 
-usenetApp.config(function($httpProvider) {
+usenetApp.config(["$httpProvider", function($httpProvider) {
     //Enable cross domain calls
     $httpProvider.defaults.useXDomain = true;
     delete $httpProvider.defaults.headers.common['X-Requested-With'];
-});
+}]);
 
 var swaplocalhost = function(url, $location) {
     var returnurl = url.replace('localhost',$location.host());
@@ -28,7 +28,7 @@ var settingsBuilder = function(p) {
     return presets;
 };
 
-usenetApp.factory('xmlFactory', function($http) {
+usenetApp.factory('xmlFactory', ["$http", function($http) {
 	return {
 		getXMLAsync: function(url, callback) {
 		$http.get(url, 
@@ -41,16 +41,16 @@ usenetApp.factory('xmlFactory', function($http) {
          }}
 	).success(callback);
     }};
-});	
+}]);	
 
-usenetApp.factory('jsonFactory', function($http) {
+usenetApp.factory('jsonFactory', ["$http", function($http) {
 	return {
 		getJSONAsync: function(url, callback) {
 		$http.get(url).success(callback);
 		}};
-});
+}]);
 
-controllers.mobile = function ($scope, jsonFactory, $location) {
+controllers.mobile = ["$scope", "jsonFactory", "$location", function ($scope, jsonFactory, $location) {
 	jsonFactory.getJSONAsync('settings.json', function(results){
 		$scope.settings = results;
 		angular.forEach($scope.settings.android, function(eachdroid) {
@@ -60,9 +60,9 @@ controllers.mobile = function ($scope, jsonFactory, $location) {
 			eachios.url = swaplocalhost(eachios.url, $location);
 		});
 		});
-}
+}]
 
-controllers.SabComing =  function ($scope, jsonFactory, $location) {
+controllers.SabComing = ["$scope","jsonFactory","$location", function ($scope, jsonFactory, $location) {
         //get settings first
         jsonFactory.getJSONAsync('settings.json', function(results){
                 $scope.settings = results;
@@ -86,9 +86,9 @@ controllers.SabComing =  function ($scope, jsonFactory, $location) {
 		}
 
 });
-}
+}]
 
-controllers.SabDLList = function ($scope, Session, xmlFactory, jsonFactory, $localStorage, $location) {
+controllers.SabDLList = ["$scope", "Session", "xmlFactory", "jsonFactory", "$localStorage", "$location", function ($scope, Session, xmlFactory, jsonFactory, $localStorage, $location) {
 	var today = new Date();
 	var dd = today.getDate();
 	var mm = today.getMonth()+1; //January is 0!
@@ -197,7 +197,7 @@ listTorrents();
 		});
 		}
 	});
-   }
+   }]
 
 directives.transTorrent = function() {
 	return {

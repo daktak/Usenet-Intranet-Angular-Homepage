@@ -2,17 +2,17 @@
 
 var app = angular.module('usenetApp.sessions', []);
 
-app.config(function($httpProvider) {
+app.config(["$httpProvider", function($httpProvider) {
     //Enable cross domain calls
     $httpProvider.defaults.useXDomain = true;
     delete $httpProvider.defaults.headers.common['X-Requested-With'];
-});
+}]);
 
 var baseUrl = function (ip) {
   return 'http://' + ip + '/transmission/rpc';
 }
 
-app.factory('Session', function($http, $q, $base64) {
+app.factory('Session', ["$http","$q","$base64",function($http, $q, $base64) {
   var ipAddress = '192.168.1.1';
   var methods = {};
 
@@ -145,6 +145,6 @@ app.factory('Session', function($http, $q, $base64) {
   };
 
   return methods;
-});
+}]);
 
 

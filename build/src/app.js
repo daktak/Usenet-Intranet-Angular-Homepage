@@ -1,3 +1,6 @@
+/* jshint node: true */
+'use strict';
+
 var usenetApp = angular.module('usenetApp', ['usenetApp.sessions', 'base64','ngStorage']);	
 
 var controllers = {};
@@ -60,7 +63,7 @@ controllers.mobile = ["$scope", "jsonFactory", "$location", function ($scope, js
 			eachios.url = swaplocalhost(eachios.url, $location);
 		});
 		});
-}]
+}];
 
 controllers.SabComing = ["$scope","jsonFactory","$location", function ($scope, jsonFactory, $location) {
         //get settings first
@@ -86,7 +89,7 @@ controllers.SabComing = ["$scope","jsonFactory","$location", function ($scope, j
 		}
 
 });
-}]
+}];
 
 controllers.SabDLList = ["$scope", "Session", "xmlFactory", "jsonFactory", "$localStorage", "$location", function ($scope, Session, xmlFactory, jsonFactory, $localStorage, $location) {
 	var today = new Date();
@@ -94,10 +97,10 @@ controllers.SabDLList = ["$scope", "Session", "xmlFactory", "jsonFactory", "$loc
 	var mm = today.getMonth()+1; //January is 0!
 	var yyyy = today.getFullYear();
 	if(dd<10) {
-	    dd='0'+dd
+	    dd='0'+dd;
 	} 
 	if(mm<10) {
-        	mm='0'+mm
+        	mm='0'+mm;
 	} 
 	$scope.today =  yyyy+'-'+mm+'-'+dd;
 	//get settings first
@@ -132,13 +135,13 @@ controllers.SabDLList = ["$scope", "Session", "xmlFactory", "jsonFactory", "$loc
   $scope.listSettings = function() {
   	return settingsBuilder($scope.$storage);
   };
-  listTorrents = function() {
+  var listTorrents = function() {
 Session.listTorrents($scope.session, $scope.$storage.ipAddress, $scope.listSettings()).then(function(data) {
       if (angular.isString(data)) {
         $scope.session = data;
 	listTorrents();
       } else {
-        $scope.torrents = data['arguments']['torrents'];
+        $scope.torrents = data.arguments.torrents;
       }
       });
 };
@@ -202,7 +205,7 @@ listTorrents();
 		});
 		}
 	});
-   }]
+   }];
 
 directives.transTorrent = function() {
 	return {
@@ -211,32 +214,32 @@ directives.transTorrent = function() {
 		'({{torrent.percentDone*100 | number:0}}%) @ {{torrent.rateDownload}} KB</span></div>'
 
 	};
-}
+};
 
 directives.sbDL = function() {
 	return {
 		templateUrl: 'intranet/template/sbdl.tpl.html'
 	};
-}
+};
 
 directives.sbHistory = function() {
         return {
 		templateUrl: 'intranet/template/sbhistory.tpl.html'
 
 	};
-}
+};
 
 directives.sabnzbd  = function() {
 	return {
 		templateUrl: 'intranet/template/sabnzbd.tpl.html'
 	};
-}
+};
 
 directives.sabHistory  = function() {
         return {
 		templateUrl: 'intranet/template/sabhistory.tpl.html'
         };
-}
+};
 
 
 usenetApp.directive(directives);

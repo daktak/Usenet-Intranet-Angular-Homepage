@@ -1,6 +1,7 @@
-/* jshint node: true */
-'use strict';
 
+/* jshint node: true */
+(function () {
+    "use strict";
 var usenetApp = angular.module('usenetApp', ['usenetApp.sessions', 'base64','ngStorage']);	
 
 var controllers = {};
@@ -245,3 +246,4 @@ directives.sabHistory  = function() {
 usenetApp.directive(directives);
 usenetApp.controller(controllers);
 
+}());

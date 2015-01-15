@@ -1,0 +1,13 @@
+{
+	"name": "Usenet-Intranet-Angular-Homepage",
+	"version": "0.0.0",
+	"devDependencies": {
+		"gulp" : "",
+		"gulp-concat" : "", 
+		"gulp-jshint": "",
+		"gulp-minify-css" : "",
+		"gulp-rename": "",
+		"gulp-uglify" : "",
+		"jshint-stylish" : ""
+	}
+}

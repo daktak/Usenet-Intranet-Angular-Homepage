@@ -151,9 +151,9 @@ listTorrents();
 		//get sab downrload queue
 		if ($scope.settings.sabnzbd) {
 		xmlFactory.getXMLAsync(results.sabnzbdURL+'api?mode=qstatus&output=xml&apikey='+results.sabnzbdAPI, function(results){
-		if (angular.isArray(results.queue.jobs.job) || angular.isNull(results.queue.jobs.job)) {
+		if (angular.isArray(results.queue.jobs.job)) {
 			$scope.sabdl = results.queue.jobs.job;
-		} else {
+		} else if (!angular.isUndefined(results.queue.jobs.job)) {
 			$scope.sabdl = [results.queue.jobs.job];
 		}
 

@@ -8,6 +8,8 @@
 		"gulp-minify-css" : "",
 		"gulp-rename": "",
 		"gulp-uglify" : "",
+		"gulp-cached" : "",
+		"gulp-js-beaut" : "",
 		"jshint-stylish" : ""
 	}
 }

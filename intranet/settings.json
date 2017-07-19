@@ -4,64 +4,104 @@
     "headphones": true,
     "sabnzbd": true,
     "transmission": true,
-    "sickbeardURL": "http://localhost/sickbeard/",
-    "sickbeardAPI": "api",
-    "sabnzbdURL": "http://localhost/sabnzbd/",
-    "sabnzbdAPI": "api",
-    "couchpotatoURL": "couchpotato/",
-    "headphonesURL": "http://localhost/headphones/",
-    "transmissionURL": "localhost",
-    "transmissionLink": "http://localhost/transmission/web/",
+    "sickbeardURL": "http://localhost:81/sickbeard/",
+    "sickbeardAPI": "be6dd21082951d0a03354fa0bfaa8dfd",
+    "sabnzbdURL": "http://localhost:81/sabnzbd/",
+    "sabnzbdAPI": "38be4ec4161a65b5f403cdbc4438bf84",
+    "couchpotatoURL": "http://192.168.1.10:5050/couchpotato/",
+    "headphonesURL": "http://192.168.1.10:8181/headphones/",
+    "transmissionURL": "192.168.1.10:81",
+    "transmissionLink": "http://192.168.1.10:81/transmission/web/",
     "sickMissed": true,
     "sickPopups": true,
     "showTrailers": true,
     "showWifi": false,
-    "wifiName": "wifi",
-    "wifiPassword": "pass",
+    "wifiName": "Marshmallow",
+    "wifiPassword": "idontknow7679",
     "bookSort" : "label",
     "androidSort" : "label",
     "iosSort" : "label",
     "android": [
         {
-            "label": "Owncloud",
-            "url": "https://play.google.com/store/apps/details?id=com.owncloud.android",
+            "label": "Nextcloud",
+            "url": "https://f-droid.org/repository/browse/?fdid=com.nextcloud.client",
             "icon": "images/owncloud.png"
         },
-        {
-            "label": "NZB 360",
-            "url": "http://atom/intranet/files/NZB360.apk",
-            "icon": ""
-        },
+	{
+	    "label": "CADroid",
+	    "url": "https://f-droid.org/repository/browse/?fdid=at.bitfire.cadroid",
+	    "icon": ""
+	},
+	{
+	    "label": "Nextcloud News",
+	    "url": "https://f-droid.org/repository/browse/?fdid=de.luhmer.owncloudnewsreader",
+	    "icon": ""
+	},
+	{
+	    "label": "Nextcloud SMS",
+	    "url": "https://f-droid.org/repository/browse/?fdid=fr.unix_experience.owncloud_sms",
+	    "icon": ""
+	},
         {
             "label": "Quasseldroid",
-            "url": "https://play.google.com/store/apps/details?id=com.iskrembilen.quasseldroid",
+            "url": "https://f-droid.org/repository/browse/?fdid=com.iskrembilen.quasseldroid",
             "icon": ""
         },
         {
-            "label": "XBMC Remote",
-            "url": "https://play.google.com/store/apps/details?id=org.xbmc.android.remote",
+            "label": "KORE Remote",
+            "url": "https://f-droid.org/repository/browse/?fdid=org.xbmc.kore",
             "icon": ""
         },
         {
-            "label": "NzbTools",
-            "url": "https://play.google.com/store/apps/details?id=com.jqe.nzbtools",
+            "label": "Tasks",
+            "url": "https://f-droid.org/repository/browse/?fdid=org.dmfs.tasks",
             "icon": ""
         },
         {
-            "label": "MPDroid",
-            "url": "https://play.google.com/store/apps/details?id=com.namelessdev.mpdroid",
+            "label": "Cherry Music",
+            "url": "https://f-droid.org/repository/browse/?fdid=de.live.gdev.cherrymusic",
             "icon": ""
         },
         {
-            "label": "Ampache.Net",
-            "url": "https://play.google.com/store/apps/details?id=johnmooreampachenet.johnmooreampachenet",
+            "label": "Wallabag",
+            "url": "https://f-droid.org/repository/browse/?fdid=fr.gaulupeau.apps.InThePoche",
             "icon": ""
         },
         {
-            "label": "In the poche",
-            "url": "https://play.google.com/store/apps/details?id=fr.gaulupeau.apps.InThePoche",
+            "label": "DAVdroid",
+            "url": "https://f-droid.org/repository/browse/?fdid=at.bitfire.davdroid",
             "icon": ""
-        }
+        },
+	{
+	    "label": "Syncthing - LenovoTab",
+	    "url": "https://android-b596d7d49818097:8384/",
+	    "icon": ""
+	},
+        {
+            "label": "Syncthing - OP2",
+            "url": "https://android-b4e0aad80bebf699:8384/",
+            "icon": ""
+        },
+        {
+            "label": "Syncthing - XperiaZ5",
+            "url": "https://android-290ff75d6622a029:8384/",
+            "icon": ""
+        },
+        {
+            "label": "Syncthing - GalaxyTab",
+            "url": "https://android-b27d95d9a68b5bd4:8384/",
+            "icon": ""
+        },
+	{
+	    "label": "M.A.L.P.",
+	    "url": "https://f-droid.org/repository/browse/?fdid=org.gateshipone.malp",
+	    "icon": ""
+	},
+	{
+	    "label": "Notes",
+	    "url": "https://f-droid.org/repository/browse/?fdid=it.niedermann.owncloud.notes",
+	    "icon": ""
+	}
     ],
     "ios": [
         {
@@ -117,112 +157,150 @@
     ],
     "bookmarks": [
         {
+	    "label": "Radio",
+	    "url": "http://192.168.1.10:8000/mpd.mp3",
+	    "icon": ""
+	},
+    	{
+	    "label": "Syncthing",
+	    "url": "http://192.168.1.10:8384",
+	    "icon": ""
+	},
+        {
+	    "label": "Rainloop",
+	    "url": "https://domo.ddns.net:7070/owncloud/index.php/login?redirect_url=/owncloud/index.php/apps/rainloop/",
+	    "icon": ""
+	},
+        {
             "label": "Season Start Dates",
-            "url": "intranet/comingseasons.html",
+            "url": "http://192.168.1.10:81/intranet/comingseasons.html",
             "icon": "intranet/images/tv.png"
         },
-        {
-            "label": "NZB.su",
-            "url": "https://nzb.su/login",
-            "icon": "intranet/images/nzb_su.png"
-        },
+	{
+	    "label": "Sarg",
+	    "url": "http://192.168.1.10:81/squid-reports/",
+	    "icon": ""
+	},
+	{
+	    "label": "Mailgraph",
+	    "url": "http://192.168.1.10:81/mailgraph.cgi",
+	    "icon": ""
+	},
+	{
+	    "label": "MRTG",
+	    "url": "http://192.168.1.10:81//mrtg/",
+	    "icon": ""
+	},
         {
             "label": "Monit",
-            "url": "monit/",
+            "url": "http://192.168.1.10:81/monit/",
             "icon": ""
         },
         {
-            "label": "Owncloud",
-            "url": "owncloud",
+            "label": "Nextcloud",
+            "url": "https://domo.ddns.net:7070/owncloud/",
             "icon": "intranet/images/owncloud.png"
         },
         {
-            "label": "SpotWeb",
-            "url": "spotweb/",
-            "icon": "spotweb/favicon.ico"
-        },
-        {
             "label": "Lazy Librarian",
-            "url": "lazylibrarian/",
+            "url": "http://192.168.1.10:8092/lazylibrarian/",
             "icon": ""
         },
         {
             "label": "Mylar",
-            "url": "mylar/",
+            "url": "http://192.168.1.10:8090/mylar/",
             "icon": "intranet/images/mylarlogo.png"
         },
         {
-            "label": "Ampache",
-            "url": "ampache/",
-            "icon": "ampache/favicon.ico"
-        },
-        {
-            "label": "| es | f |",
-            "url": "es-f/",
-            "icon": "es-f/favicon.ico"
-        },
-        {
             "label": "PHPCoin",
-            "url": "PHPCoin/",
+            "url": "http://192.168.1.10:81/PHPCoin/",
             "icon": "PHPCoin/favicon.ico"
         },
         {
-            "label": "Dashboard",
-            "url": "linux-dash",
-            "icon": ""
-        },
-        {
-            "label": "Trakt.TV",
-            "url": "http://trakt.tv",
-            "icon": "http://trakt.tv/favicon.ico"
-        },
-        {
-            "label": "MusicBrainz",
-            "url": "http://localhost:5000",
-            "icon": ""
-        },
-        {
-            "label": "Radio Stream",
-            "url": "http://localhost:8000/radio.mp3",
-            "icon": ""
-        },
-        {
-            "label": "nZEDb",
-            "url": "nzedb",
-            "icon": "nzedb/favicon.ico"
-        },
-        {
             "label": "Wallabag",
-            "url": "wallabag",
+            "url": "https://domo.ddns.net:7070/wallabag/web/app.php",
             "icon": ""
         },
 	{
 	    "label": "Mobile Links",
-	    "url": "intranet/mobile.html",
+	    "url": "http://192.168.1.10:81/intranet/mobile.html",
+	    "icon": ""
+	},
+	{
+	    "label": "nZEDb",
+	    "url": "https://domo.ddns.net:7070/nzedb/",
+	    "icon": "nzedb/favicon.ico"
+	},
+	{
+	    "label": "MythWeb",
+	    "url": "http://192.168.1.10:81/mythweb/",
+	    "icon": ""
+	},
+	{
+	    "label": "CherryMusic",
+	    "url": "https://domo.ddns.net:7070/cherrymusic/",
+	    "icon": ""
+	},
+	{
+	    "label": "Gitlab",
+	    "url": "http://192.168.1.10:8086",
+	    "icon": ""
+	},
+	{
+	    "label": "Openbank",
+	    "url": "http://192.168.1.10:8087",
+	    "icon": ""
+	},
+	{
+	    "label": "Privoxy Config",
+	    "url": "http://config.privoxy.org/show-status/",
 	    "icon": ""
 	}
     ],
    "keys": [
    	{
 	    "label": "Couchpotato",
-	    "api": "apikey"
+	    "api": "033c53c574fd46e79561154c05c2a702"
 	},
 	{
 	    "label": "Headphones",
-	    "api": "apikey"
+	    "api": "45ac24ee461c7e9ce2d429ebbf8cdfb9"
 	},
+    {
+        "label": "Mylar",
+        "api": "15216ef6015ae6be5b8cc611df2ef710"
+    },
+    {
+        "label": "LazyLibrarian",
+        "api" : "8e576b9b1084c7997d3a7e44e041b3b0"
+    },
 	{
-	    "label": "Spotweb",
-	    "api": "apikey"
-	},
-	{
-	    "label": "nZEDb",
-	    "api": "apikey"
+	    "label": "Comic Vine",
+	    "api": "0ccd29ab1e42a3eba0ea22c6a8b3fbc797d25833"
 	},
 	{
 	    "label": "nzb.su",
-	    "api": "apikey"
-	}
-
+	    "api": "354bca078ae7c4f317afb957302ad50f"
+	},
+	{
+	    "label": "boxcar",
+	    "api": "alOKZOfGWYmNdpffYuVA"
+	},
+	{
+	    "label": "AWS : AKIAIDTAM2UDTVYDFJIA",
+	    "api" : "jQ1L7uK85NBPCD5TOFVwagFhvrdAI9Pzx2MJZZD6"
+	},
+    {
+        "label": "nzb.is",
+        "api" : "8d35f423f822cfca3486b02806c3f4d6"
+    },
+    {
+        "label": "nZEDb",
+        "api" : "53d3dae370ba970735e4bbfcea331a07"
+    },
+    {
+        "label": "DrunkenSlug",
+        "api" : "7c3584744b7982017b41a60e0a907a99"
+    }
    ]
 }

@@ -4,15 +4,15 @@ var gulp = require('gulp'),
     uglify = require('gulp-uglify'),
     rename = require('gulp-rename'),
     minifyCSS = require('gulp-minify-css'),
-    jshint = require('gulp-jshint'),
+    //jshint = require('gulp-jshint'),
     cache = require('gulp-cached'),
     beautify = require('gulp-js-beaut'),
     concat = require('gulp-concat');
 
 gulp.task('lint', function() {
 	return gulp.src('src/app.js')
-	.pipe(jshint())
-	.pipe(jshint.reporter('jshint-stylish'));
+	//.pipe(jshint())
+	//.pipe(jshint.reporter('jshint-stylish'));
 });
 
 gulp.task('build', function() {

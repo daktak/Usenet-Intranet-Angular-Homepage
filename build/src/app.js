@@ -152,10 +152,10 @@
             //get sab downrload queue
             if ($scope.settings.sabnzbd) {
                 xmlFactory.getXMLAsync(results.sabnzbdURL + 'api?mode=qstatus&output=xml&apikey=' + results.sabnzbdAPI, function(results) {
-                    if (angular.isArray(results.queue.jobs.job)) {
-                        $scope.sabdl = results.queue.jobs.job;
-                    } else if (!angular.isUndefined(results.queue.jobs.job)) {
-                        $scope.sabdl = [results.queue.jobs.job];
+                    if (angular.isArray(results.result.slots.slot)) {
+                        $scope.sabdl = results.result.slots.slot;
+                    } else if (!angular.isUndefined(results.result.slots.slot)) {
+                        $scope.sabdl = [results.result.slots.slot];
                     }
 
                     angular.forEach($scope.sabdl, function(eachjob) {
